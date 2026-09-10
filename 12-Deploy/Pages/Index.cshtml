@@ -1,0 +1,25 @@
+@page
+@model IndexModel
+@{ ViewData["Title"] = "Latest stories"; }
+<h1>Latest stories</h1>
+<p>Stories from Northline Press.</p>
+@if (Model.QDefined) {
+  <form method="get" class="mb-3"><input class="form-control" name="q" value="@Model.Q" placeholder="Search" /><button class="btn btn-primary mt-2">Search</button></form>
+}
+@foreach (var post in Model.Posts) {
+  <article class="mb-3">
+    <h2>
+      @if (post.Id.HasValue) { <a href="/Posts/Details?id=@post.Id">@post.Title</a> } else { @post.Title }
+    </h2>
+    <p class="text-muted">by @post.AuthorName</p>
+    <p>@post.Excerpt</p>
+  </article>
+}
+@if (!Model.Posts.Any()) { <p>No stories yet.</p> }
+@if (Model.Pagination != null) {
+  <nav>
+    @if (Model.Pagination.Prev != null) { <a href="/?page=@Model.Pagination.Prev&q=@Model.Q">Previous</a> }
+    Page @Model.Pagination.Page / @Model.Pagination.Pages
+    @if (Model.Pagination.Next != null) { <a href="/?page=@Model.Pagination.Next&q=@Model.Q">Next</a> }
+  </nav>
+}

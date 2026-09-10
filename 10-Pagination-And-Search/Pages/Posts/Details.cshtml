@@ -1,0 +1,12 @@
+@page
+@model NorthlinePress.Pages.Posts.DetailsModel
+@{ ViewData["Title"] = Model.Post.Title; }
+<article>
+  <h1>@Model.Post.Title</h1>
+  <p class="text-muted">by @Model.Post.AuthorName</p>
+  <p>@Model.Post.Content</p>
+  @if (Model.CanEdit) {
+    <a class="btn btn-secondary" href="/Posts/Edit?id=@Model.Post.Id">Edit</a>
+    <form method="post" asp-page-handler="Delete" style="display:inline"><input type="hidden" name="id" value="@Model.Post.Id" /><button class="btn btn-danger">Delete</button></form>
+  }
+</article>

@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_USER: northline
+      POSTGRES_PASSWORD: northline
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - northline_pg:/var/lib/postgresql/data
+volumes:
+  northline_pg:

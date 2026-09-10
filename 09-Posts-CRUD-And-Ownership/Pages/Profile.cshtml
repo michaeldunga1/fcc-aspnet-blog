@@ -1,0 +1,9 @@
+@page
+@model ProfileModel
+@{ ViewData["Title"] = Model.Profile.DisplayName; }
+<h1>@Model.Profile.DisplayName</h1>
+@if (!string.IsNullOrEmpty(Model.Profile.ImagePath)) { <img class="avatar" src="@Model.Profile.ImagePath" alt="" /> }
+<p>@(string.IsNullOrEmpty(Model.Profile.Bio) ? "No bio yet." : Model.Profile.Bio)</p>
+@if (Model.IsSelf) { <p><a href="/Profile/Edit">Edit profile</a></p> }
+<h2>Posts</h2>
+@foreach (var p in Model.Posts) { <p><a href="/Posts/Details?id=@p.Id">@p.Title</a></p> }

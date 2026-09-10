@@ -1,0 +1,10 @@
+@page
+@model NorthlinePress.Pages.Posts.EditModel
+@{ ViewData["Title"] = "Edit post"; }
+<h1>Edit post</h1>
+<form method="post">
+  <input type="hidden" name="id" value="@Model.Id" />
+  <div class="mb-3"><label class="form-label">Title</label><input class="form-control" name="title" value="@Model.TitleValue" required /></div>
+  <div class="mb-3"><label class="form-label">Content</label><textarea class="form-control" name="content" required>@Model.ContentValue</textarea></div>
+  <button class="btn btn-primary">Save</button>
+</form>

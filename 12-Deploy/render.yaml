@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: northline-press
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: ConnectionStrings__Default
+        sync: false
+      - key: SESSION_HTTPS_ONLY
+        value: "true"
+      - key: APP_URL
+        sync: false
